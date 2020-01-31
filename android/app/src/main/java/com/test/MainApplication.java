@@ -81,9 +81,6 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);     
-    // Start requesting for location
-    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 1, listener);
     SoLoader.init(this, /* native exopackage */ false);
  }
 }

@@ -1,10 +1,28 @@
 import 'react-native';
 import React from 'react';
-import App from '../App';
-
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import * as actions from '../src/actions/products.actions';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+const middlewares = [thunk]
+const mockStore = configureStore(middlewares)
+const store = mockStore({})
+
+beforeEach(() => {
+  store.clearActions();
+});
+
+it('ADD_PRODUCT', () => {
+  store.dispatch(actions.addProduct({
+    key: Math.random(),
+    name: 'espinaca'}
+  ));
+  expect(store.getActions()).toMatchSnapshot();
+});
+
+it('DELETE_PRODUCT', () => {
+  store.dispatch(actions.deleteProduct(0.5880098879062283));
+  expect(store.getActions()).toMatchSnapshot();
 });

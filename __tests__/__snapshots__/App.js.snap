@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ADD_PRODUCT 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "key": 0.025004632884472633,
+      "name": "espinaca",
+    },
+    "type": "ADD_PRODUCT",
+  },
+]
+`;
+
+exports[`DELETE_PRODUCT 1`] = `
+Array [
+  Object {
+    "key": 0.5880098879062283,
+    "type": "DELETE_PRODUCT",
+  },
+]
+`;

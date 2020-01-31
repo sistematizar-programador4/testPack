@@ -13,11 +13,5 @@ const Redux = () => (
     <App />
   </Provider>
 );
-const LogLocation = async (data) => {
-  navigator.geolocation.getCurrentPosition((position) => {
-    console.log(position.coords);
-  });
-}
 
-AppRegistry.registerHeadlessTask('LogLocation', () => LogLocation);
 AppRegistry.registerComponent(appName, () => Redux);
