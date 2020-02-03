@@ -2,7 +2,8 @@ import 'react-native';
 import React from 'react';
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import * as actions from '../src/actions/products.actions';
+import * as products from '../src/actions/products.actions';
+import * as locations from '../src/actions/locations.actions';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -15,7 +16,7 @@ beforeEach(() => {
 });
 
 it('ADD_PRODUCT', () => {
-  store.dispatch(actions.addProduct({
+  store.dispatch(products.addProduct({
     key: Math.random(),
     name: 'espinaca'}
   ));
@@ -23,6 +24,14 @@ it('ADD_PRODUCT', () => {
 });
 
 it('DELETE_PRODUCT', () => {
-  store.dispatch(actions.deleteProduct(0.5880098879062283));
+  store.dispatch(products.deleteProduct(0.5880098879062283));
+  expect(store.getActions()).toMatchSnapshot();
+});
+
+it('ADD_COORDS', () => {
+  store.dispatch(locations.addCoords({
+    key: Math.random(),
+    location: '00000'}
+  ));
   expect(store.getActions()).toMatchSnapshot();
 });

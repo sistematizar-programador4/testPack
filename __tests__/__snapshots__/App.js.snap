@@ -1,10 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ADD_COORDS 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "key": 0.05723000657152855,
+      "location": "00000",
+    },
+    "type": "ADD_COORDS",
+  },
+]
+`;
+
 exports[`ADD_PRODUCT 1`] = `
 Array [
   Object {
     "data": Object {
-      "key": 0.025004632884472633,
+      "key": 0.9008418350000806,
       "name": "espinaca",
     },
     "type": "ADD_PRODUCT",

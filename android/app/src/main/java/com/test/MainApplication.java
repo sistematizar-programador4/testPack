@@ -36,24 +36,6 @@ public class MainApplication extends Application implements ReactApplication {
     new BasePackageList().getPackageList(),
     Arrays.<SingletonModule>asList()
   );
-  private final LocationListener listener = new LocationListener() {
-  @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-    }
-    
-  @Override
-    public void onProviderEnabled(String provider) {
-    }
-  @Override
-    public void onProviderDisabled(String provider) {
-    }
-  @Override
-      public void onLocationChanged(Location location) {
-      Intent myIntent = new Intent(getApplicationContext(), LocationService.class);
-      getApplicationContext().startService(myIntent);
-    HeadlessJsTaskService.acquireWakeLockNow(getApplicationContext());
-      }
-  };
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -77,10 +59,29 @@ public class MainApplication extends Application implements ReactApplication {
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
   }
-
+  private final LocationListener listener = new LocationListener() {
+      @Override
+      public void onStatusChanged(String provider, int status, Bundle extras) {
+      }  
+      @Override
+      public void onProviderEnabled(String provider) {
+      }
+      @Override
+      public void onProviderDisabled(String provider) {
+      }
+      @Override
+      public void onLocationChanged(Location location) {
+          Intent myIntent = new Intent(getApplicationContext(), LocationService.class);
+          getApplicationContext().startService(myIntent);
+          HeadlessJsTaskService.acquireWakeLockNow(getApplicationContext());
+      }
+  };
   @Override
   public void onCreate() {
     super.onCreate();
+    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);     
+    // Start requesting for location
+    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 1, listener);
     SoLoader.init(this, /* native exopackage */ false);
  }
 }
